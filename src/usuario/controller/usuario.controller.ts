@@ -7,12 +7,12 @@ import { Usuario } from "../entities/usuario.entity";
 import { UsuarioService } from "../service/usuario.service";
 
 @ApiTags('Usuario')
-@UseGuards(JwtAuthGuard)
 @Controller('/usuarios')
 @ApiBearerAuth()
 export class UsuarioController {
     constructor(private readonly usuarioService: UsuarioService) { }
    
+    @UseGuards(JwtAuthGuard)
     @Get('/all')
     @HttpCode(HttpStatus.OK)
     findAll(): Promise<Usuario[]> {
